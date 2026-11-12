@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cendra-brand: #F3EEE5;
+  --bg-primary: #0B0C0F;
+  --bg-secondary: #141519;
+  --bg-elevated: #1C1D22;
+  --bg-hover: #25262C;
+  --border-default: #2B2C32;
+  --border-strong: #3A3B42;
+  --text-primary: #F3EEE5;
+  --text-secondary: #A6A39C;
+  --text-muted: #74747A;
+  --success: #56B88A;
+  --warning: #E8B45C;
+  --danger: #E16D6D;
+  --info: #75A9E8;
+
+  /* Custom refined easing curves from emil-design-eng & apple-design */
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-smooth: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Apple typography tracking rules */
+h1, h2, h3, .display-heading {
+  letter-spacing: -0.025em;
+}
+
+.mono-label {
+  font-family: var(--font-jetbrains-mono), monospace;
+  letter-spacing: 0.04em;
+}
+
+/* Subtle technical grid background */
+.bg-tech-grid {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(43, 44, 50, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(43, 44, 50, 0.25) 1px, transparent 1px);
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(243, 238, 229, 0.06) 0%, rgba(11, 12, 15, 0) 70%);
+}
+
+.bg-radial-subtle {
+  background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(243, 238, 229, 0.04) 0%, transparent 100%);
+}
+
+/* Interactive button feedback: Apple & Emil principles */
+.btn-pressable {
+  transition: transform 160ms var(--ease-out-strong), background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+  will-change: transform;
+}
+
+.btn-pressable:active {
+  transform: scale(0.97);
+}
+
+/* Custom terminal scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* Subtle glow effects */
+.glow-ivory {
+  box-shadow: 0 0 50px -12px rgba(243, 238, 229, 0.15);
+}
+
+.glow-subtle {
+  box-shadow: 0 0 30px -10px rgba(86, 184, 138, 0.2);
+}
+
+/* Code block styling */
+pre, code {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

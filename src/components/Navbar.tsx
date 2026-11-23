@@ -1,7 +1,4 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { CendraLogo } from "./CendraLogo";
 import { Terminal, Github, Download, Menu, X, ArrowUpRight, ShieldCheck, Cpu } from "lucide-react";
 
@@ -37,7 +34,7 @@ export const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Brand Logo & Wordmark */}
-            <Link
+            <a
               href="/"
               className="group flex items-center space-x-3 text-[#F3EEE5] outline-none"
               aria-label="Cendra Home"
@@ -53,46 +50,46 @@ export const Navbar: React.FC = () => {
                   v1.4.2
                 </span>
               </div>
-            </Link>
+            </a>
 
             {/* Desktop Navigation Links */}
             <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
-              <Link
+              <a
                 href="#product-showcase"
                 className="px-3 py-1.5 text-sm text-[#A6A39C] hover:text-[#F3EEE5] transition-colors rounded-md hover:bg-[#141519]"
               >
                 Workspace
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#interactive-story"
                 className="px-3 py-1.5 text-sm text-[#A6A39C] hover:text-[#F3EEE5] transition-colors rounded-md hover:bg-[#141519]"
               >
                 Story
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#features"
                 className="px-3 py-1.5 text-sm text-[#A6A39C] hover:text-[#F3EEE5] transition-colors rounded-md hover:bg-[#141519]"
               >
                 Features
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#terminal-showcase"
                 className="px-3 py-1.5 text-sm text-[#A6A39C] hover:text-[#F3EEE5] transition-colors rounded-md hover:bg-[#141519]"
               >
                 Terminal
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#security"
                 className="px-3 py-1.5 text-sm text-[#A6A39C] hover:text-[#F3EEE5] transition-colors rounded-md hover:bg-[#141519]"
               >
                 Security
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#philosophy"
                 className="px-3 py-1.5 text-sm text-[#A6A39C] hover:text-[#F3EEE5] transition-colors rounded-md hover:bg-[#141519]"
               >
                 Manifesto
-              </Link>
+              </a>
             </nav>
 
             {/* Right Actions: GitHub & Download CTA */}
@@ -134,48 +131,48 @@ export const Navbar: React.FC = () => {
         {mobileMenuOpen && (
           <div className="md:hidden px-4 pt-3 pb-6 bg-[#0B0C0F]/95 backdrop-blur-2xl border-b border-[#2B2C32] animate-in fade-in slide-in-from-top-4 duration-200">
             <div className="flex flex-col space-y-3 pt-2">
-              <Link
+              <a
                 href="#product-showcase"
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-3 py-2 text-sm text-[#F3EEE5] hover:bg-[#141519] rounded-md"
               >
                 Workspace
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#interactive-story"
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-3 py-2 text-sm text-[#F3EEE5] hover:bg-[#141519] rounded-md"
               >
                 Story
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#features"
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-3 py-2 text-sm text-[#F3EEE5] hover:bg-[#141519] rounded-md"
               >
                 Features
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#terminal-showcase"
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-3 py-2 text-sm text-[#F3EEE5] hover:bg-[#141519] rounded-md"
               >
                 Terminal
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#security"
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-3 py-2 text-sm text-[#F3EEE5] hover:bg-[#141519] rounded-md"
               >
                 Security
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#philosophy"
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-3 py-2 text-sm text-[#F3EEE5] hover:bg-[#141519] rounded-md"
               >
                 Manifesto
-              </Link>
+              </a>
               <div className="pt-3 border-t border-[#2B2C32] flex flex-col space-y-2">
                 <a
                   href="#download"
@@ -195,4 +192,3 @@ export const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-

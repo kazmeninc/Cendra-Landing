@@ -56,3 +56,6 @@ shots/
 # Agent internals
 .agents/
 skills-lock.json
+
+# Astro
+.astro/

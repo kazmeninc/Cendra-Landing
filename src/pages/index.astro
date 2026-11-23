@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import InteractiveProductStory from "../components/InteractiveProductStory";
+import FeatureExperiences from "../components/FeatureExperiences";
+import TerminalShowcase from "../components/TerminalShowcase";
+import SecurityStory from "../components/SecurityStory";
+import DesignPhilosophy from "../components/DesignPhilosophy";
+import ConversionSection from "../components/ConversionSection";
+import Footer from "../components/Footer";
+---
+
+<Layout>
+  <!-- Navigation -->
+  <Navbar client:load />
+
+  <!-- Main Content Sections -->
+  <main id="main-content" class="relative">
+    <!-- 01. Cinematic Hero & Desktop Application Showcase -->
+    <Hero client:load />
+
+    <!-- 02. Interactive Product Story (Workflow progression) -->
+    <InteractiveProductStory client:visible />
+
+    <!-- 03. Feature Experiences (Servers, Terminal, SFTP, SSH Keys, Tunnels) -->
+    <FeatureExperiences client:visible />
+
+    <!-- 04. Dedicated Interactive Terminal Showcase -->
+    <TerminalShowcase client:visible />
+
+    <!-- 05. Security Story (Hardware tokens, ciphers, visual fingerprints) -->
+    <SecurityStory client:visible />
+
+    <!-- 06. Design Philosophy (Editorial typography & focus manifesto) -->
+    <DesignPhilosophy client:visible />
+
+    <!-- 07. Final Conversion & Download -->
+    <ConversionSection client:visible />
+  </main>
+
+  <!-- Comprehensive Technical Footer -->
+  <Footer client:idle />
+</Layout>

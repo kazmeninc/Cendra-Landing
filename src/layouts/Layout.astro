@@ -1,0 +1,55 @@
+---
+import "../styles/globals.css";
+import CommandPalette from "../components/CommandPalette";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Cendra — Your Infrastructure, One Centre | SSH Client & Developer Tools",
+  description = "A focused workspace for every server, connection and terminal. Minimal, technical, and engineered for quiet developer flow.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth bg-[#0B0C0F] text-[#F3EEE5]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/cendra-icon.png" />
+    <meta name="theme-color" content="#0B0C0F" />
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/cendra-logo-dark.png" />
+
+    <!-- Typography: Inter & JetBrains Mono with System Fallbacks -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#0B0C0F] text-[#F3EEE5] min-h-screen selection:bg-[#F3EEE5]/20 selection:text-[#F3EEE5] antialiased">
+    <slot />
+
+    <!-- Global Command Palette (Cmd + K) -->
+    <CommandPalette client:idle />
+
+    <script is:inline>
+      // Guarantee scroll position resets on manual refresh
+      if (typeof window !== "undefined") {
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "manual";
+        }
+      }
+    </script>
+  </body>
+</html>

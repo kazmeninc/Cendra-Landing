@@ -1,11 +1,9 @@
-"use client";
-
 import React, { useRef, useEffect, useState } from "react";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
   className?: string;
-  delay?: number; // delay in ms
+  delay?: number;
   direction?: "up" | "none";
 }
 
@@ -20,9 +18,12 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el) {
+      setIsVisible(true);
+      return;
+    }
 
-    // If already in view on mount (e.g. above the fold or scrolled), reveal immediately
+    // Immediately reveal if element is already within viewport
     const rect = el.getBoundingClientRect();
     if (rect.top <= window.innerHeight * 0.95) {
       setIsVisible(true);
@@ -37,27 +38,36 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
         }
       },
       {
-        threshold: 0.08,
-        rootMargin: "0px 0px -30px 0px",
+        threshold: 0.05,
+        rootMargin: "0px 0px 40px 0px",
       }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // Safety fallback: if not revealed within 800ms, reveal smoothly so content is NEVER blank
+    const safetyTimeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 800);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(safetyTimeout);
+    };
   }, []);
 
   return (
     <div
       ref={ref}
       style={{
-        transitionDuration: "700ms",
+        transitionDuration: "600ms",
         transitionDelay: `${delay}ms`,
         transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
       }}
       className={`transition-all ${
         isVisible
           ? "opacity-100 translate-y-0"
-          : `opacity-0 ${direction === "up" ? "translate-y-6" : ""}`
+          : `opacity-0 ${direction === "up" ? "translate-y-4" : ""}`
       } ${className}`}
     >
       {children}
@@ -66,4 +76,3 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
 };
 
 export default ScrollReveal;
-

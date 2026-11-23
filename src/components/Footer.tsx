@@ -1,7 +1,4 @@
-"use client";
-
 import React from "react";
-import Link from "next/link";
 import { CendraLogo } from "./CendraLogo";
 import { Github, Twitter, ShieldCheck, Terminal, Disc as Discord } from "lucide-react";
 
@@ -12,10 +9,10 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
           {/* Brand Col */}
           <div className="col-span-2 space-y-4">
-            <Link href="/" className="inline-flex items-center space-x-3 text-[#F3EEE5]">
+            <a href="/" className="inline-flex items-center space-x-3 text-[#F3EEE5]">
               <CendraLogo size={28} variant="squircle" animateCursor />
               <span className="font-bold tracking-tight text-base text-[#F3EEE5]">CENDRA</span>
-            </Link>
+            </a>
             <p className="text-sm text-[#74747A] max-w-sm leading-relaxed">
               A focused workspace for every server, connection and terminal. Minimal,
               uncompromisingly technical, and engineered for quiet developer flow.
@@ -146,4 +143,3 @@ export const Footer: React.FC = () => {
 };
 
 export default Footer;
-

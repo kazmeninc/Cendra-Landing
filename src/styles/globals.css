@@ -49,12 +49,26 @@ body {
 
 /* Apple typography tracking rules */
 h1, h2, h3, .display-heading {
-  letter-spacing: -0.025em;
+  letter-spacing: -0.028em;
 }
 
 .mono-label {
   font-family: var(--font-jetbrains-mono), monospace;
   letter-spacing: 0.04em;
+}
+
+/* Scroll progress indicator at top */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #56B88A 0%, #F3EEE5 50%, #75A9E8 100%);
+  z-index: 100;
+  width: 0%;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(243, 238, 229, 0.6);
+  transition: width 40ms linear;
 }
 
 /* Subtle technical grid background */
@@ -111,6 +125,35 @@ h1, h2, h3, .display-heading {
   box-shadow: 0 0 30px -10px rgba(86, 184, 138, 0.2);
 }
 
+/* Animated gradient text highlight */
+.gradient-text-cendra {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F3EEE5 45%, #A6A39C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shimmer pulse line */
+@keyframes shimmerPulse {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.shimmer-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(243, 238, 229, 0.15), transparent);
+  animation: shimmerPulse 3.5s infinite linear;
+}
+
 /* Code block styling */
 pre, code {
   font-family: var(--font-jetbrains-mono), monospace;
@@ -126,5 +169,7 @@ pre, code {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  #scroll-progress {
+    display: none;
+  }
 }
-

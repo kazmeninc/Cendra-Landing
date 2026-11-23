@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 import ScrollReveal from "./ScrollReveal";
+import TextReveal from "./TextReveal";
 
 interface TerminalHistoryItem {
   command: string;
@@ -205,9 +206,8 @@ export const TerminalShowcase: React.FC = () => {
             <span>INTERACTIVE SCRIPTED CONSOLE</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold uppercase tracking-tight text-[#F3EEE5] mb-5">
-            LESS SWITCHING.
-            <br />
-            <span className="text-[#A6A39C]">MORE BUILDING.</span>
+            <TextReveal as="span" text="LESS SWITCHING." delay={60} className="block" />
+            <TextReveal as="span" text="MORE BUILDING." delay={200} className="block text-[#A6A39C]" />
           </h2>
           <p className="text-base sm:text-lg text-[#A6A39C] leading-relaxed">
             Run diagnostics, tail remote container logs and execute multi-hop pipelines

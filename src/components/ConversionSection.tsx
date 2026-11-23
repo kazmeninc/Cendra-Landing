@@ -5,6 +5,7 @@ import { Download, Terminal, Copy, Check, Apple, Monitor, Laptop, ArrowRight } f
 import { CendraLogo } from "./CendraLogo";
 import SpotlightCard from "./SpotlightCard";
 import ScrollReveal from "./ScrollReveal";
+import TextReveal from "./TextReveal";
 
 export const ConversionSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -34,9 +35,8 @@ export const ConversionSection: React.FC = () => {
         {/* Big Conversion Headline */}
         <ScrollReveal delay={80} className="mb-5">
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tight text-[#F3EEE5] leading-[1.08]">
-            BRING YOUR INFRASTRUCTURE
-            <br />
-            <span className="text-[#A6A39C]">TOGETHER.</span>
+            <TextReveal as="span" text="BRING YOUR INFRASTRUCTURE" delay={60} className="block" />
+            <TextReveal as="span" text="TOGETHER." delay={200} className="block text-[#A6A39C]" />
           </h2>
         </ScrollReveal>
 

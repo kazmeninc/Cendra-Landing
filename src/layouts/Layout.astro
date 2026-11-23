@@ -38,17 +38,35 @@ const {
     />
   </head>
   <body class="bg-[#0B0C0F] text-[#F3EEE5] min-h-screen selection:bg-[#F3EEE5]/20 selection:text-[#F3EEE5] antialiased">
+    <!-- Scroll-Driven Progress Bar -->
+    <div id="scroll-progress" aria-hidden="true"></div>
+
     <slot />
 
     <!-- Global Command Palette (Cmd + K) -->
     <CommandPalette client:idle />
 
     <script is:inline>
+      // Scroll-driven progress indicator
+      function updateScrollProgress() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        const bar = document.getElementById("scroll-progress");
+        if (bar) {
+          bar.style.width = `${progress}%`;
+        }
+      }
+
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", updateScrollProgress, { passive: true });
+
       // Guarantee scroll position resets on manual refresh
       if (typeof window !== "undefined") {
         if ("scrollRestoration" in history) {
           history.scrollRestoration = "manual";
         }
+        updateScrollProgress();
       }
     </script>
   </body>

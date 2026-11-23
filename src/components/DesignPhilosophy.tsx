@@ -3,6 +3,7 @@
 import React from "react";
 import { Terminal, BellOff, Compass, Sparkles } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import TextReveal from "./TextReveal";
 
 export const DesignPhilosophy: React.FC = () => {
   return (
@@ -19,9 +20,8 @@ export const DesignPhilosophy: React.FC = () => {
           </div>
 
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tight text-[#F3EEE5] max-w-4xl leading-[1.05]">
-            TECHNOLOGY SHOULD
-            <br />
-            <span className="text-[#A6A39C]">FEEL EFFORTLESS.</span>
+            <TextReveal as="span" text="TECHNOLOGY SHOULD" delay={60} className="block" />
+            <TextReveal as="span" text="FEEL EFFORTLESS." delay={200} className="block text-[#A6A39C]" />
           </h2>
         </ScrollReveal>
 

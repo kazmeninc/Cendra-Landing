@@ -22,6 +22,7 @@ import {
 import { CendraLogo } from "./CendraLogo";
 import SpotlightCard from "./SpotlightCard";
 import ScrollReveal from "./ScrollReveal";
+import TextReveal from "./TextReveal";
 
 export const InteractiveProductStory: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -107,9 +108,8 @@ export const InteractiveProductStory: React.FC = () => {
             <span>OPERATIONAL WALKTHROUGH</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold uppercase tracking-tight text-[#F3EEE5] mb-5">
-            YOUR ENTIRE INFRASTRUCTURE.
-            <br />
-            <span className="text-[#A6A39C]">ONE WORKSPACE.</span>
+            <TextReveal as="span" text="YOUR ENTIRE INFRASTRUCTURE." delay={60} className="block" />
+            <TextReveal as="span" text="ONE WORKSPACE." delay={200} className="block text-[#A6A39C]" />
           </h2>
           <p className="text-base sm:text-lg text-[#A6A39C] max-w-xl mx-auto leading-relaxed">
             Follow the flow of a modern engineer: from multi-region discovery to

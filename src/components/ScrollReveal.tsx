@@ -4,7 +4,10 @@ interface ScrollRevealProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
-  direction?: "up" | "none";
+  direction?: "up" | "down" | "left" | "right" | "scale" | "none";
+  distance?: number;
+  duration?: number;
+  threshold?: number;
 }
 
 export const ScrollReveal: React.FC<ScrollRevealProps> = ({
@@ -12,22 +15,23 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   className = "",
   delay = 0,
   direction = "up",
+  distance = 36,
+  duration = 750,
+  threshold = 0.12,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) {
-      setIsVisible(true);
-      return;
-    }
+    if (!el) return;
 
-    // Immediately reveal if element is already within viewport
+    // Check if element is already in viewport on mount (e.g. above fold)
     const rect = el.getBoundingClientRect();
-    if (rect.top <= window.innerHeight * 0.95) {
-      setIsVisible(true);
-      return;
+    if (rect.top <= window.innerHeight * 0.88) {
+      // Small timeout so initial mount animation actually visibly plays
+      const timer = setTimeout(() => setIsVisible(true), Math.max(50, delay));
+      return () => clearTimeout(timer);
     }
 
     const observer = new IntersectionObserver(
@@ -38,36 +42,48 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
         }
       },
       {
-        threshold: 0.05,
-        rootMargin: "0px 0px 40px 0px",
+        threshold,
+        rootMargin: "0px 0px -50px 0px",
       }
     );
 
     observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold, delay]);
 
-    // Safety fallback: if not revealed within 800ms, reveal smoothly so content is NEVER blank
-    const safetyTimeout = setTimeout(() => {
-      setIsVisible(true);
-    }, 800);
-
-    return () => {
-      observer.disconnect();
-      clearTimeout(safetyTimeout);
-    };
-  }, []);
+  const getTransform = () => {
+    if (isVisible) return "translate3d(0, 0, 0) scale(1)";
+    switch (direction) {
+      case "up":
+        return `translate3d(0, ${distance}px, 0) scale(0.97)`;
+      case "down":
+        return `translate3d(0, -${distance}px, 0) scale(0.97)`;
+      case "left":
+        return `translate3d(${distance}px, 0, 0)`;
+      case "right":
+        return `translate3d(-${distance}px, 0, 0)`;
+      case "scale":
+        return "translate3d(0, 0, 0) scale(0.93)";
+      case "none":
+        return "translate3d(0, 0, 0)";
+      default:
+        return `translate3d(0, ${distance}px, 0)`;
+    }
+  };
 
   return (
     <div
       ref={ref}
       style={{
-        transitionDuration: "600ms",
+        transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
         transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+        transform: getTransform(),
       }}
-      className={`transition-all ${
+      className={`transition-all will-change-transform will-change-opacity ${
         isVisible
-          ? "opacity-100 translate-y-0"
-          : `opacity-0 ${direction === "up" ? "translate-y-4" : ""}`
+          ? "opacity-100 filter-none"
+          : "opacity-0 blur-[1px]"
       } ${className}`}
     >
       {children}

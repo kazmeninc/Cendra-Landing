@@ -4,6 +4,7 @@ import React from "react";
 import { ShieldCheck, Lock, Key, Cpu, EyeOff, CheckCircle, Terminal } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 import ScrollReveal from "./ScrollReveal";
+import TextReveal from "./TextReveal";
 
 export const SecurityStory: React.FC = () => {
   const securityPillars = [
@@ -54,9 +55,8 @@ export const SecurityStory: React.FC = () => {
             <span>SECURITY ARCHITECTURE</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold uppercase tracking-tight text-[#F3EEE5] mb-5">
-            YOUR INFRASTRUCTURE
-            <br />
-            <span className="text-[#A6A39C]">DESERVES CARE.</span>
+            <TextReveal as="span" text="YOUR INFRASTRUCTURE" delay={60} className="block" />
+            <TextReveal as="span" text="DESERVES CARE." delay={200} className="block text-[#A6A39C]" />
           </h2>
           <p className="text-base sm:text-lg text-[#A6A39C] leading-relaxed">
             Engineered from first principles for uncompromising confidentiality. No

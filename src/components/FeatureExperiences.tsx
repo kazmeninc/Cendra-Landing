@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 import ScrollReveal from "./ScrollReveal";
+import TextReveal from "./TextReveal";
 
 export const FeatureExperiences: React.FC = () => {
   const [activeFeatureTab, setActiveFeatureTab] = useState<
@@ -110,9 +111,8 @@ export const FeatureExperiences: React.FC = () => {
             <span>ARCHITECTURAL CAPABILITIES</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold uppercase tracking-tight text-[#F3EEE5] mb-5">
-            ENGINEERED FOR FLOW.
-            <br />
-            <span className="text-[#A6A39C]">REFINED FOR CLARITY.</span>
+            <TextReveal as="span" text="ENGINEERED FOR FLOW." delay={60} className="block" />
+            <TextReveal as="span" text="REFINED FOR CLARITY." delay={200} className="block text-[#A6A39C]" />
           </h2>
           <p className="text-base sm:text-lg text-[#A6A39C] leading-relaxed">
             Every feature in Cendra is purpose-built to eliminate context switching
